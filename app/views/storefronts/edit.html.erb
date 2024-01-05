@@ -1,14 +1,21 @@
 <div class="mx-auto md:w-2/3 w-full">
-  <h1>Returns</h1>
+  <div class="page-title">
+    <h2 class="title">Returns</h1>
+  </div>
 
-  <fieldset>
-    <div>
-      <legend>Return Reasons</legend>
-      Add or edit return reasons you would like to show the customers during the return request process.
-    </div>
+  <fieldset class="form-wrapper">
+    <div class="form-container"> 
+      <div class="form-description">
+        <legend class="form-title">Return Reasons</legend>
+        <span class="form-subtitle">
+          Add or edit return reasons you would like to show the customers during the return request process.
+        </span>
+      </div>
 
-    <div>
-      <%= render "form", storefront: @storefront %>
+      <div class="nested-form-wrapper">
+
+        <%= render "form", storefront: @storefront %>
+       </div>
     </div>
   </fieldset>
 </div>
