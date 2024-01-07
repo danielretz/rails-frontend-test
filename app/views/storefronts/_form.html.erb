@@ -1,4 +1,5 @@
 <%= simple_form_for storefront, data: { controller: 'nested-form', nested_form_index_value: 'NEW_RECORD' } do |form| %>
+
   <% if storefront.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(storefront.errors.count, "error") %> prohibited this storefront from being saved:</h2>
@@ -11,21 +12,13 @@
     </div>
   <% end %>
 
-  <div
-    class="return-reason-container"
-  >
-
-    <template hidden data-nested-form-target="template">
-      <%= form.simple_fields_for :reasons, Reason.new, child_index: 'NEW_RECORD' do |reason_fields| %>
-        <%= render 'reason', f: reason_fields %>
-      <% end %>
-    </template>
-    <ul role="list" class="return-reason-list">
-      <li class="add-return-reason-container">
-        <button type="button" data-action="nested-form#addAssociation" class="add-return-reason-button">
+  <div class="flex-col flex-[1_0_0] items-center rounded-xl border border-solid border-gray-100 bg-gray-50">
+    <ul role="list" class="divide-y divide-gray-100">
+      <li class="flex p-4 items-center gap-6 self-stretch text-blue-500">
+        <button type="button" data-action="nested-form#addAssociation" class="rounded-full w-6 h-6 bg-blue-600 text-white">
           +
         </button>
-        <span class="add-return-reason-button-text">
+        <span class="rounded">
           Add Return Reason
         </span>
       </li>
@@ -33,7 +26,7 @@
       
       <% @storefront.reasons.ordered.each do |reason| %>
         <li>
-          <%= render 'reason_entry', f: reason %>
+          <%= render partial: 'reasons/reason', locals: { reason: reason } %>
         </li>
       <% end %>
 

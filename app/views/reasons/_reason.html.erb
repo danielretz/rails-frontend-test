@@ -1,5 +1,5 @@
 
-<div class="reason-entry-wrapper">
+<div class="flex p-4 items-start gap-6 self-stretch">
   <div class="reason-drag-icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
       <path d="M8.25033 12.8327C9.26285 12.8327 10.0837 12.0119 10.0837 10.9993C10.0837 9.98683 9.26285 9.16602 8.25033 9.16602C7.2378 9.16602 6.41699 9.98683 6.41699 10.9993C6.41699 12.0119 7.2378 12.8327 8.25033 12.8327Z" fill="#D9D9D9"/>
@@ -10,9 +10,9 @@
       <path d="M13.7503 19.2507C14.7628 19.2507 15.5837 18.4298 15.5837 17.4173C15.5837 16.4048 14.7628 15.584 13.7503 15.584C12.7378 15.584 11.917 16.4048 11.917 17.4173C11.917 18.4298 12.7378 19.2507 13.7503 19.2507Z" fill="#D9D9D9"/>
     </svg>
   </div>
-  <div class="reason-entry"> 
-    <div class="reason-visibility-icon">
-      <% if f.active %>
+  <div class="flex items-center gap-4 flex-[1_0_0]"> 
+    <div class="w-6 h-6">
+      <% if reason.active %>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12C23 12 19 20 12 20C5 20 1 12 1 12Z" stroke="#3164F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="#3164F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -31,12 +31,10 @@
         </svg>
       <% end %>
     </div>
-    <div class="reason-label">
-      <%= f.label %>
-    </div>
+    <span class="flex-[1_0_0] <%= reason.active ? '' : 'text-gray-500' %>">
+      <%= reason.label %>
+    </span>
   </div>
-  
-  <button class="reason-edit-button">
-    Edit
-  </button>
+  <%= link_to 'Edit', edit_reason_path(reason), class: "text-blue-600", data: { turbo_frame: 'modal' } %>
+
 </div>

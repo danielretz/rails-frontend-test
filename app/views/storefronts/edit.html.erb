@@ -1,21 +1,21 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <div class="page-title">
-    <h2 class="title">Returns</h1>
+<div class="px-4 w-full">
+  <div class="flex pt-4 items-center gap-10">
+    <h2 class="text-[32px] text-black leading-[43.2px] not-italic font-bold">Returns</h1>
   </div>
 
-  <fieldset class="form-wrapper">
-    <div class="form-container"> 
-      <div class="form-description">
-        <legend class="form-title">Return Reasons</legend>
-        <span class="form-subtitle">
+  <fieldset class="flex p-4 flex-col items-start gap-10 self-stretch rounded-xl bg-white shadow-[0_3px_8px_-1px_rgba(50,50,71,0.05),0_0_1px_0_rgba(12,26,75,0.24)]">
+    <div class="flex items-start gap-10 self-stretch"> 
+      <div class="flex flex-col items-start gap-2">
+        <legend class="text-black text-xl not-italic font-bold">Return Reasons</legend>
+        <span class="text-[#292929] leading-[19.6px] not-italic tracking-[-0.154px]">
           Add or edit return reasons you would like to show the customers during the return request process.
         </span>
       </div>
 
-      <div class="nested-form-wrapper">
-
+      <div class="p-6 w-full">
         <%= render "form", storefront: @storefront %>
        </div>
     </div>
+
   </fieldset>
 </div>
