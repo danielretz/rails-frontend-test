@@ -12,13 +12,11 @@
   </head>
 
   <body>
-    <main class="flex">
+    <main class="flex h-screen">
       <%= turbo_frame_tag 'modal' %>
-      <div class="flex flex-col content-between items-start shrink-0 bg-gray-900 w-1/6">
+      <div class="flex flex-col bg-gray-900 w-1/6">
       </div>
-      <div class="inline flex-col items-start gap-4 bg-gray-50 font-['Inter_var'] mx-auto not-italic">
-        <%= yield %>
-      </div>
+      <%= yield %>
     </main>
   </body>
 </html>
