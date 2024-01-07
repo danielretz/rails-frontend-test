@@ -14,15 +14,16 @@
 
   <div class="flex-col flex-[1_0_0] items-center rounded-xl border border-solid border-gray-100 bg-gray-50">
     <ul role="list" class="divide-y divide-gray-100">
-      <li class="flex p-4 items-center gap-6 self-stretch text-blue-500">
-        <button type="button" data-action="nested-form#addAssociation" class="rounded-full w-6 h-6 bg-blue-600 text-white">
-          +
-        </button>
-        <span class="rounded">
-          Add Return Reason
-        </span>
-      </li>
-
+        <li class="flex p-4 items-center gap-6 self-stretch text-blue-500">
+          <%= link_to new_reason_path, data: { turbo_frame: 'modal' }, :method => :get do %>
+            <button type="button" class="rounded-full w-6 h-6 bg-blue-600 text-white">
+              +
+            </button>
+            <span class="rounded">
+              Add Return Reason
+            </span>
+          <%end%>
+        </li>
       
       <% @storefront.reasons.ordered.each do |reason| %>
         <li>
