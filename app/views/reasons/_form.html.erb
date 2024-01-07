@@ -33,10 +33,10 @@
             hint: 'When hidden, this return reason is not offered as an option to the customers. Click on the eye icon to make the return reason visible.'
         %>
         <div class="flex items-start self-stretch justify-between"> 
-          <%= button_tag "Delete", data: { action: "modal#delete"}, type: "button", class: "font-semibold rounded-lg py-2 px-5 bg-white border border-red-500 border-2 border-solid text-red-500" %> 
-          <%= button_tag "Continue", data: { action: "modal#continue" }, type: "button", class: "font-semibold rounded-lg py-2 px-5 border border-solid border-2 border-yellow-500 bg-yellow-500 text-black" %>
-        </div>
+        <%= button_tag "Delete", data: { action: "modal#delete"}, type: "button", class: "rounded-lg py-3 px-5 bg-white border border-red-500 border-2 border-solid text-red-500" %> 
+        <%= button_tag "Continue", data: { action: "modal#continue" }, type: "button", class: "rounded-lg py-3 px-5 border border-solid border-2 border-yellow-500 bg-yellow-500 text-black" %>
         <%= f.hidden_field :_destroy %>
+        </div>
       </div>
   </div>
 <% end %>
