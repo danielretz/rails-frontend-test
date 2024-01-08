@@ -34,6 +34,5 @@
       <%= reason.label %>
     </span>
   </div>
-  <%= link_to 'Edit', edit_reason_path(reason), class: "text-blue-600", data: { turbo_frame: 'modal' } %>
-
+  <%= link_to 'Edit', edit_reason_path(reason, storefront_id: storefront.id), class: "text-blue-600", data: { turbo_frame: 'modal' } %>
 </div>

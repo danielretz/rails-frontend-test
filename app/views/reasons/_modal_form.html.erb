@@ -1,9 +1,9 @@
-<%= tag.div data: { controller: "modal" } do %>
+<%= tag.div data: { controller: "modal", turbo_frame: "modal", action: 'turbo:before-fetch-response->modal#hide' } do %>
   <div class="w-full relative">
     <div class="m-1 bg-white rounded-2xl shadow font-['Inter_var']">
       <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
         <h3 class="text-xl font-semibold text-gray-900 dark:text-white capitalize">
-            Edit Return Reason
+            <%= "#{action} Return Reason" %>
         </h3>
         <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="static-modal">
             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -12,7 +12,7 @@
             <span class="sr-only">Close modal</span>
         </button>
       </div>
-      <%= render partial: 'reasons/form', locals: { reason: reason } %>
+      <%= render partial: 'reasons/form', locals: { storefront: storefront, reason: reason } %>
     </div>
   </div>
 <% end %>

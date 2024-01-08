@@ -2,7 +2,6 @@
   <% if reason.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(reason.errors.count, "error") %> prohibited this reason from being saved:</h2>
-
       <ul>
         <% reason.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -33,9 +32,10 @@
             hint: 'When hidden, this return reason is not offered as an option to the customers. Click on the eye icon to make the return reason visible.'
         %>
         <div class="flex items-start self-stretch justify-between"> 
+        <%= f.hidden_field :storefront_id, value: storefront.id %>
+
         <%= button_tag "Delete", data: { action: "modal#delete"}, type: "button", class: "rounded-lg py-3 px-5 bg-white border border-red-500 border-2 border-solid text-red-500" %> 
-        <%= button_tag "Continue", data: { action: "modal#continue" }, type: "button", class: "rounded-lg py-3 px-5 border border-solid border-2 border-yellow-500 bg-yellow-500 text-black" %>
-        <%= f.hidden_field :_destroy %>
+        <%= f.submit "Continue", data: { turbo: true }, class: "rounded-lg py-3 px-5 border border-solid border-2 border-yellow-500 bg-yellow-500 text-black" %>
         </div>
       </div>
   </div>

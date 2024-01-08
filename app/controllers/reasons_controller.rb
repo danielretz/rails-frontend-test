@@ -1,10 +1,6 @@
 class ReasonsController < ApplicationController
   before_action :set_reason, only: %i[ show edit update destroy ]
-
-  # GET /reasons or /reasons.json
-  def index
-    @reasons = Reason.all
-  end
+  before_action :set_storefront, only: %i[new show edit create]
 
   # GET /reasons/1 or /reasons/1.json
   def show
@@ -25,8 +21,7 @@ class ReasonsController < ApplicationController
 
     respond_to do |format|
       if @reason.save
-        format.html { redirect_to reason_url(@reason), notice: "Reason was successfully created." }
-        format.json { render :show, status: :created, location: @reason }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("storefront-reasons", partial: "storefronts/form", locals: { storefront: @reason.storefront }) }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @reason.errors, status: :unprocessable_entity }
@@ -38,8 +33,7 @@ class ReasonsController < ApplicationController
   def update
     respond_to do |format|
       if @reason.update(reason_params)
-        format.html { redirect_to reason_url(@reason), notice: "Reason was successfully updated." }
-        format.json { render :show, status: :ok, location: @reason }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("storefront-reasons", partial: "storefronts/form", locals: { storefront: @reason.storefront }) }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @reason.errors, status: :unprocessable_entity }
@@ -52,8 +46,7 @@ class ReasonsController < ApplicationController
     @reason.destroy!
 
     respond_to do |format|
-      format.html { redirect_to reasons_url, notice: "Reason was successfully destroyed." }
-      format.json { head :no_content }
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("storefront-reasons", partial: "storefronts/form", locals: { storefront: @storefront }) }
     end
   end
 
@@ -63,8 +56,12 @@ class ReasonsController < ApplicationController
       @reason = Reason.find(params[:id])
     end
 
+    def set_storefront
+      @storefront = Storefront.find(params[:storefront_id] || reason_params[:storefront_id])
+    end
+
     # Only allow a list of trusted parameters through.
     def reason_params
-      params.fetch(:reason, {})
+      params.fetch(:reason, {}).permit(:active, :code, :label, :ordering, :storefront_id)
     end
 end

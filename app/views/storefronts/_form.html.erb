@@ -1,68 +1,70 @@
-<%= simple_form_for storefront, method: :put, html: { class: 'w-full' }, data: { controller: 'nested-form', nested_form_index_value: 'NEW_RECORD' } do |form| %>
-  <div class="flex w-full inline flex-col h-screen items-stretch justify-between gap-4 bg-gray-50 font-['Inter_var'] not-italic">
-    <div class="w-full">
-      <div class="flex pt-4 px-4 items-center gap-10">
-        <h2 class="text-[32px] text-black leading-[43.2px] not-italic font-bold">Returns</h1>
-      </div>
-      <div class="p-4"> 
-        
-        <fieldset class="flex flex-col p-3 items-start gap-10 self-stretch rounded-xl bg-white shadow-[0_3px_8px_-1px_rgba(50,50,71,0.05),0_0_1px_0_rgba(12,26,75,0.24)]">
-          <% if storefront.errors.any? %>
-            <div style="color: red">
-              <h2><%= pluralize(storefront.errors.count, "error") %> prohibited this storefront from being saved:</h2>
+<%= turbo_frame_tag 'storefront-reasons' do %>
+  <%= simple_form_for storefront, method: :put, html: { class: 'w-full' }, data: { controller: 'nested-form', nested_form_index_value: 'NEW_RECORD' } do |form| %>
+    <div class="flex w-full inline flex-col h-screen items-stretch justify-between gap-4 bg-gray-50 font-['Inter_var'] not-italic">
+      <div class="w-full">
+        <div class="flex pt-4 px-4 items-center gap-10">
+          <h2 class="text-[32px] text-black leading-[43.2px] not-italic font-bold">Returns</h1>
+        </div>
+        <div class="p-4"> 
+          
+          <fieldset class="flex flex-col p-3 items-start gap-10 self-stretch rounded-xl bg-white shadow-[0_3px_8px_-1px_rgba(50,50,71,0.05),0_0_1px_0_rgba(12,26,75,0.24)]">
+            <% if storefront.errors.any? %>
+              <div style="color: red">
+                <h2><%= pluralize(storefront.errors.count, "error") %> prohibited this storefront from being saved:</h2>
 
-              <ul>
-                <% storefront.errors.each do |error| %>
-                  <li><%= error.full_message %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
-          <div class="flex items-start gap-10 self-stretch"> 
-            <div class="flex flex-col items-start gap-2">
-              <legend class="text-black text-xl not-italic font-bold">Return Reasons</legend>
-              <span class="text-[#292929] leading-[19.6px] not-italic tracking-[-0.154px]">
-                Add or edit return reasons you would like to show the customers during the return request process.
-              </span>
-            </div>
-
-            <div class="p-6 w-full">
-              <div class="flex-col flex-[1_0_0] items-center rounded-xl border border-solid border-gray-100 bg-gray-50">
-                <li class="flex p-4 items-center gap-6 self-stretch border border-solid border-gray-100 text-blue-500">
-                  <%= link_to new_reason_path, data: { turbo_frame: 'modal' }, :method => :get do %>
-                    <button type="button" class="rounded-full w-6 h-6 bg-blue-600 text-white">
-                      +
-                    </button>
-                    <span class="rounded">
-                      Add Return Reason
-                    </span>
-                  <%end%>
-                </li>
-                <div hidden data-nested-form-target="addItem"></div>
-                <ul role="list" class="divide-y divide-gray-100" data-controller="sortable" data-sortable-animation-value="150">
-                  <% @storefront.reasons.ordered.each do |reason| %>
-                    <li>
-                      <%= render partial: 'reasons/reason', locals: { reason: reason } %>
-                      <%= simple_fields_for "storefront[reasons_attributes][#{reason.ordering}]", reason do |reason_fields| %>
-                        <%= reason_fields.hidden_field :id %>
-                        <%= reason_fields.hidden_field :label %>
-                        <%= reason_fields.hidden_field :code %>
-                        <%= reason_fields.hidden_field :ordering %>
-                      <% end %>
-                    </li>
+                <ul>
+                  <% storefront.errors.each do |error| %>
+                    <li><%= error.full_message %></li>
                   <% end %>
                 </ul>
               </div>
-            </div>
-          </div>
-        </fieldset> 
-      </div>
-    </div>
+            <% end %>
+            <div class="flex items-start gap-10 self-stretch"> 
+              <div class="flex flex-col items-start gap-2">
+                <legend class="text-black text-xl not-italic font-bold">Return Reasons</legend>
+                <span class="text-[#292929] leading-[19.6px] not-italic tracking-[-0.154px]">
+                  Add or edit return reasons you would like to show the customers during the return request process.
+                </span>
+              </div>
 
-    <div class="flex items-center shadow justify-between p-4 bg-white"> 
-      <div>
-        Remember to save your changes before leaving this page
+              <div class="p-6 w-full">
+                <div class="flex-col flex-[1_0_0] items-center rounded-xl border border-solid border-gray-100 bg-gray-50">
+                  <li class="flex p-4 items-center gap-6 self-stretch border border-solid border-gray-100 text-blue-500">
+                    <%= link_to new_reason_path(storefront_id: storefront.id), data: { turbo_frame: 'modal' }, :method => :get do %>
+                      <button type="button" class="rounded-full w-6 h-6 bg-blue-600 text-white">
+                        +
+                      </button>
+                      <span class="rounded">
+                        Add Return Reason
+                      </span>
+                    <%end%>
+                  </li>
+                  <div hidden data-nested-form-target="addItem"></div>
+                  <ul role="list" class="divide-y divide-gray-100" data-controller="sortable" data-sortable-animation-value="150">
+                      <% storefront.reasons.ordered.each do |reason| %>
+                        <li>
+                          <%= render partial: 'reasons/reason', locals: { storefront: storefront, reason: reason } %>
+                          <%= simple_fields_for "storefront[reasons_attributes][#{reason.ordering}]", reason do |reason_fields| %>
+                            <%= reason_fields.hidden_field :id %>
+                            <%= reason_fields.hidden_field :label %>
+                            <%= reason_fields.hidden_field :code %>
+                            <%= reason_fields.hidden_field :ordering %>
+                          <% end %>
+                        </li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </fieldset> 
+        </div>
       </div>
-    <%= form.submit "Save", class: "font-semibold rounded-lg py-2 px-5 border border-solid border-2 border-yellow-500 bg-yellow-500 text-black" %>
-  </div>
+
+      <div class="flex items-center shadow justify-between p-4 bg-white"> 
+        <div>
+          Remember to save your changes before leaving this page
+        </div>
+      <%= form.submit "Save", class: "font-semibold rounded-lg py-2 px-5 border border-solid border-2 border-yellow-500 bg-yellow-500 text-black" %>
+    </div>
+  <% end %>
 <% end %>
