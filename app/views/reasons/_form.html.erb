@@ -1,14 +1,4 @@
 <%= simple_form_for reason do |f| %>
-  <% if reason.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(reason.errors.count, "error") %> prohibited this reason from being saved:</h2>
-      <ul>
-        <% reason.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
   <div class="px-4 pt-4 pb-1 w-full">
       <div class="mb-4">
         <%=
@@ -31,13 +21,13 @@
             label: 'Reason is visible to customers',
             hint: 'When hidden, this return reason is not offered as an option to the customers. Click on the eye icon to make the return reason visible.'
         %>
-        <div class="flex items-start self-stretch justify-between"> 
         <%= f.hidden_field :storefront_id, value: storefront.id %>
 
-        <% if @reason.id %>
-          <%= link_to 'Delete', reason, data: { turbo: true, turbo_confirm: 'Are you sure?', turbo_method: :delete, action: 'modal#hide' }, class: "rounded-lg py-3 px-5 bg-white border border-red-500 border-2 border-solid text-red-500" %>
-        <% end %>
-        <%= f.submit "Continue", data: { turbo: true }, class: "rounded-lg py-3 px-5 border border-solid border-2 border-yellow-500 bg-yellow-500 text-black" %>
+        <div class="flex items-end <%= 'flex-col' unless reason.id %>  self-stretch justify-between"> 
+          <% if reason.id %>
+            <%= link_to 'Delete', reason, data: { turbo: true, turbo_confirm: 'Are you sure?', turbo_method: :delete, action: 'modal#hide' }, class: "rounded-lg py-3 px-5 bg-white border border-red-500 border-2 border-solid text-red-500" %>
+          <% end %>
+          <%= f.submit "Continue", data: { turbo: true }, class: "rounded-lg py-3 px-5 border border-solid border-2 border-yellow-500 bg-yellow-500 text-black" %>
         </div>
       </div>
   </div>

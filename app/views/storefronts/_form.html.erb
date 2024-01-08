@@ -29,7 +29,7 @@
             <div class="p-6 w-full">
               <div class="flex-col flex-[1_0_0] items-center rounded-xl border border-solid border-gray-100 bg-gray-50">
                 <li class="flex p-4 items-center gap-6 self-stretch border border-solid border-gray-100 text-blue-500">
-                  <%= link_to new_reason_path(storefront_id: storefront.id), data: { controller: 'modal', turbo_frame: 'modal', action: "modal#open" }, :method => :get do %>
+                  <%= link_to new_reason_path(storefront_id: storefront.id), data: { turbo_frame: 'modal' }, :method => :get do %>
                     <button type="button" class="rounded-full w-6 h-6 bg-blue-600 text-white">
                       +
                     </button>
