@@ -3,13 +3,32 @@
 @tailwind utilities;
 
 @layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+  #modal {
+    @apply absolute z-10 p-4 flex-col items-end gap-6 shrink-0 left-2/4 top-2/4 -translate-y-1/2 -translate-x-1/2
   }
-  .btn {
-    @apply py-2 px-4 bg-gray-200;
+
+  .mb-4 > input {
+    @apply border-gray-200
   }
-  .btn-danger {
-    @apply py-2 px-4 bg-red-200;
+
+  .checkbox-wrapper {
+    padding: 4px 8px 0px 0px
+  }
+
+  input[type=checkbox]:focus {
+    box-shadow: none;
+  }
+
+  input[type=checkbox]:checked {
+    background-image: url("visible.svg");
+  }
+
+  input[type=checkbox] {
+    border: unset;
+    height: 24px;
+    width: 24px;
+    background: #fff;
+    color: #fff;
+    background-image: url("not-visible.svg");
   }
 }

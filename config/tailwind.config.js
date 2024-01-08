@@ -12,6 +12,10 @@ module.exports = {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
+      backgroundImage: {
+        visible_img: "url('visible.svg')",
+        not_visible_img: "url('not-visible.svg')",
+      },
     },
   },
   plugins: [

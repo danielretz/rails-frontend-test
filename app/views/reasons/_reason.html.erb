@@ -1,0 +1,13 @@
+<div class="flex p-4 items-start gap-6 self-stretch">
+  <div class="w-6 h-6 bg-[url('drag-drop.svg')]"></div>
+  <div class="flex items-center gap-4 flex-[1_0_0]"> 
+    <% if reason.active? %> 
+      <div class="w-6 h-6 bg-[url('visible.svg')]"></div>
+      <span class="flex-[1_0_0]' %>"> <%= reason.label %></span>
+    <% else %>
+      <div class="w-6 h-6 bg-[url('not-visible.svg')]"></div>
+      <span class="flex-[1_0_0] text-gray-500"> <%= reason.label %></span>
+    <% end %>
+  </div>
+  <%= link_to 'Edit', edit_reason_path(reason, storefront_id: storefront.id), class: "text-blue-600", data: { turbo_frame: 'modal' } %>
+</div>
