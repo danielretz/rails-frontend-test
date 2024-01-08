@@ -55,9 +55,9 @@ SimpleForm.setup do |config|
     b.use :html5
     b.optional :readonly
     b.wrapper tag: 'div', class: 'flex items-start h-5 checkbox-wrapper' do |ba|
-      ba.use :input, class: 'focus:ring-2 focus:ring-indigo-500 ring-offset-2 h-4 w-4 text-indigo-600 border-gray-300 rounded'
+      ba.use :input, class: 'focus:ring-2 focus:ring-indigo-500 ring-offset-2 h-4 w-4 text-indigo-600'
     end
-    b.wrapper tag: 'div', class: 'ml-3 text-base checkbox-description' do |bb|
+    b.wrapper tag: 'div', class: 'ml-3 text-base' do |bb|
       bb.use :label, class: 'self-stretch text-gray-900 font-medium', error_class: 'text-red-500'
       bb.use :hint, wrap_with: { tag: 'p', class: 'text-sm font-extralight text-gray-500 not-italic' }
       bb.use :full_error, wrap_with: { tag: 'p', class: 'block text-red-500 text-sm italic' }

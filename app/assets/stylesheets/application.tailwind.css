@@ -14,4 +14,21 @@
   .checkbox-wrapper {
     padding: 4px 8px 0px 0px
   }
+
+  input[type=checkbox]:focus {
+    box-shadow: none;
+  }
+
+  input[type=checkbox]:checked {
+    background-image: url("visible.svg");
+  }
+
+  input[type=checkbox] {
+    border: unset;
+    height: 30px;
+    width: 30px;
+    background: #fff;
+    color: #fff;
+    background-image: url("not-visible.svg");
+  }
 }
