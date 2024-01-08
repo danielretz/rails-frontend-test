@@ -25,8 +25,8 @@
 
   input[type=checkbox] {
     border: unset;
-    height: 30px;
-    width: 30px;
+    height: 24px;
+    width: 24px;
     background: #fff;
     color: #fff;
     background-image: url("not-visible.svg");
