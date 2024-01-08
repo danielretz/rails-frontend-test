@@ -1,0 +1,15 @@
+<%= turbo_frame_tag 'storefront-reasons' do %>
+    <ul role="list" class="divide-y divide-gray-100" data-controller="sortable" data-sortable-animation-value="150">
+        <% storefront.reasons.ordered.each do |reason| %>
+        <li>
+            <%= render partial: 'reasons/reason', locals: { storefront: storefront, reason: reason } %>
+            <%= simple_fields_for "storefront[reasons_attributes][#{reason.ordering}]", reason do |reason_fields| %>
+            <%= reason_fields.hidden_field :id %>
+            <%= reason_fields.hidden_field :label %>
+            <%= reason_fields.hidden_field :code %>
+            <%= reason_fields.hidden_field :ordering %>
+            <% end %>
+        </li>
+        <% end %>
+    </ul>
+<% end %>

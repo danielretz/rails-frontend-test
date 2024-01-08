@@ -2,7 +2,6 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   show(e) {
-    console.log("ola")
     e.preventDefault();
 
     this.modalTarget.open = true

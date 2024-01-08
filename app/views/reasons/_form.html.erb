@@ -34,7 +34,9 @@
         <div class="flex items-start self-stretch justify-between"> 
         <%= f.hidden_field :storefront_id, value: storefront.id %>
 
-        <%= button_tag "Delete", data: { action: "modal#delete"}, type: "button", class: "rounded-lg py-3 px-5 bg-white border border-red-500 border-2 border-solid text-red-500" %> 
+        <% if @reason.id %>
+          <%= link_to 'Delete', reason, data: { turbo: true, turbo_confirm: 'Are you sure?', turbo_method: :delete, action: 'modal#hide' }, class: "rounded-lg py-3 px-5 bg-white border border-red-500 border-2 border-solid text-red-500" %>
+        <% end %>
         <%= f.submit "Continue", data: { turbo: true }, class: "rounded-lg py-3 px-5 border border-solid border-2 border-yellow-500 bg-yellow-500 text-black" %>
         </div>
       </div>

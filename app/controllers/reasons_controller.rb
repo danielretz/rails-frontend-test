@@ -1,6 +1,6 @@
 class ReasonsController < ApplicationController
   before_action :set_reason, only: %i[ show edit update destroy ]
-  before_action :set_storefront, only: %i[new show edit create]
+  before_action :set_storefront, only: %i[new show edit create update]
 
   # GET /reasons/1 or /reasons/1.json
   def show
@@ -21,7 +21,7 @@ class ReasonsController < ApplicationController
 
     respond_to do |format|
       if @reason.save
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("storefront-reasons", partial: "storefronts/form", locals: { storefront: @reason.storefront }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("storefront-reasons", partial: "storefronts/reason_list", locals: { storefront: @reason.storefront }) }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @reason.errors, status: :unprocessable_entity }
@@ -33,7 +33,7 @@ class ReasonsController < ApplicationController
   def update
     respond_to do |format|
       if @reason.update(reason_params)
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("storefront-reasons", partial: "storefronts/form", locals: { storefront: @reason.storefront }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("storefront-reasons", partial: "storefronts/reason_list", locals: { storefront: @reason.storefront }) }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @reason.errors, status: :unprocessable_entity }
@@ -43,10 +43,11 @@ class ReasonsController < ApplicationController
 
   # DELETE /reasons/1 or /reasons/1.json
   def destroy
+    @storefront = @reason.storefront
     @reason.destroy!
 
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.replace("storefront-reasons", partial: "storefronts/form", locals: { storefront: @storefront }) }
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("storefront-reasons", partial: "storefronts/reason_list", locals: { storefront: @storefront }) }
     end
   end
 
