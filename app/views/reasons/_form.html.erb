@@ -1,34 +1,34 @@
 <%= simple_form_for reason do |f| %>
   <div class="px-4 pt-4 pb-1 w-full">
-      <div class="mb-4">
-        <%=
-            f.input :label,
-            label: 'Displayed reason',
-            required: true,
-            placeholder: 'Enter Displayed reason...',
-            hint: "Provide a friendly description for the reason that will be displayed to the customer.",
-            class: 'overwrite-simple-form'
-        %>
-        <%=
-            f.input :code,
-            label: 'Internal return code',
-            required: true,
-            placeholder: 'Enter Internal return code...',
-            hint: "For internal use only. Must be unique. To aid in analytics, we do not recommend changing the code once set."
-        %>
-        <%= 
-            f.input :active,
-            label: 'Reason is visible to customers',
-            hint: 'When hidden, this return reason is not offered as an option to the customers. Click on the eye icon to make the return reason visible.'
-        %>
-        <%= f.hidden_field :storefront_id, value: storefront.id %>
+    <div class="mb-4">
+      <%=
+          f.input :label,
+          label: 'Displayed reason',
+          required: true,
+          placeholder: 'Enter Displayed reason...',
+          hint: "Provide a friendly description for the reason that will be displayed to the customer.",
+          class: 'overwrite-simple-form'
+      %>
+      <%=
+          f.input :code,
+          label: 'Internal return code',
+          required: true,
+          placeholder: 'Enter Internal return code...',
+          hint: "For internal use only. Must be unique. To aid in analytics, we do not recommend changing the code once set."
+      %>
+      <%= 
+          f.input :active,
+          label: 'Reason is visible to customers',
+          hint: 'When hidden, this return reason is not offered as an option to the customers. Click on the eye icon to make the return reason visible.'
+      %>
+      <%= f.hidden_field :storefront_id, value: storefront.id %>
 
-        <div class="flex items-end <%= 'flex-col' unless reason.id %>  self-stretch justify-between"> 
-          <% if reason.id %>
-            <%= link_to 'Delete', reason, data: { turbo: true, turbo_confirm: 'Are you sure?', turbo_method: :delete, action: 'modal#hide' }, class: "rounded-lg py-3 px-5 bg-white border border-red-500 border-2 border-solid text-red-500" %>
-          <% end %>
-          <%= f.submit "Continue", data: { turbo: true }, class: "rounded-lg py-3 px-5 border border-solid border-2 border-yellow-500 bg-yellow-500 text-black" %>
-        </div>
+      <div class="flex items-end <%= 'flex-col' unless reason.id %>  self-stretch justify-between"> 
+        <% if reason.id %>
+          <%= link_to 'Delete', reason, data: { turbo: true, turbo_confirm: 'Are you sure?', turbo_method: :delete, action: 'modal#hide' }, class: "rounded-lg py-3 px-5 bg-white border border-red-500 border-2 border-solid text-red-500" %>
+        <% end %>
+        <%= f.submit "Continue", data: { turbo: true }, class: "rounded-lg py-3 px-5 border border-solid border-2 border-yellow-500 bg-yellow-500 text-black" %>
       </div>
+    </div>
   </div>
 <% end %>
